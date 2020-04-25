@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { TaskListComponent } from './task/task-list/task-list.component';
-import { TaskListItemComponent } from './task/task-list-item/task-list-item.component';
+import { TaskListComponent } from './tasks/task-list/task-list.component';
+import { TaskListItemComponent } from './tasks/task-list-item/task-list-item.component';
 import { TaskFormComponent } from './tasks/task-form/task-form.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TaskFormComponent } from './tasks/task-form/task-form.component';
     TaskFormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
