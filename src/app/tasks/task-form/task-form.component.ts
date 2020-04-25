@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Task } from '../shared/task';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TaskService } from '../shared/task.service';
 
 @Component({
   selector: 'app-task-form',
@@ -6,10 +9,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent implements OnInit {
+  task: Task = new Task();
+  title: string = 'Nova tarefa';
 
-  constructor() { }
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private router: Router,
+    private taskService: TaskService
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    const id = this.activateRoute.snapshot.paramMap.get('id');
+    if (id) {
+      this.task = this.taskService.getById(parseInt(id));
+      this.title = 'Alterando tarefa';
+    }
+  }
+
+  onSubmit() {
+    this.taskService.save(this.task);
+    this.router.navigate(['']);
   }
 
 }
